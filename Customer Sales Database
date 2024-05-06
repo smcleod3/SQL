@@ -57,3 +57,35 @@ ON customers.order_id = FebSales.orderID
 WHERE Quantity > 2
 AND length(orderid) = 6
 AND orderid <> 'Order ID';
+
+--Trying different filtering techniques with this database
+
+SELECT orderdate
+FROM "FebSales"
+WHERE orderdate between '02/13/19 00:00' AND '02/18/19 00:00';
+
+SELECT location
+FROM "FebSales"
+WHERE orderdate = '02/18/19 01:35';
+
+SELECT sum(quantity)
+FROM "FebSales"
+WHERE orderdate like '02/18/19%';
+
+SELECT distinct Product
+FROM "FebSales"
+WHERE Product like '%Batteries%';
+
+SELECT distinct Product, Price
+FROM "FebSales"
+WHERE Price like '%.99';
+
+--List all the products sold in Los Angeles in February, and include how many of each were sold.
+
+SELECT distinct Product, SUM(Quantity), location
+FROM "FebSales"
+WHERE location like '%Los Angeles%'
+GROUP BY Product;
+
+
+
